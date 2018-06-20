@@ -1,112 +1,60 @@
-## Jasper2
+# Left
 
-[![Build Status](https://travis-ci.org/jekyller/jasper2.svg?branch=master)](https://travis-ci.org/jekyller/jasper2)
-[![Ruby](https://img.shields.io/badge/ruby-2.4.2-blue.svg?style=flat)](http://travis-ci.org/jekyller/jasper2)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.6.2-blue.svg?style=flat)](http://travis-ci.org/jekyller/jasper2)
+Left is a clean, whitespace-happy layout for [Jekyll](https://github.com/mojombo/jekyll).
 
-This is a full-featured port of Ghost's default theme [Casper](https://github.com/tryghost/casper)
-*v2.1.9* for [Jekyll](https://jekyllrb.com/) / [GitHub Pages](https://pages.github.com/).
+This is designed to be an easy layout to modify for your own blog. It was
+extracted from [zachholman.com](http://zachholman.com/), which means it was
+battle-hardened from years of posting serious blog posts about emoji and swear
+words.
 
-## Live Demo
+You can see it live right here: <http://zachholman.com/left/>
 
-[Ghost's Casper](https://demo.ghost.io) // [Jasper2](https://jekyller.github.io/jasper2)
+![Left](http://cl.ly/image/3S2r1p2C0E2B/content)
 
-![home page](https://raw.githubusercontent.com/jekyller/jasper2/master/assets/screenshot-desktop.jpg)
+## Installation
 
+- [Fork this repository](https://github.com/holman/left/fork)
+- Clone it: `git clone https://github.com/YOUR-USER/left`
+- Install ruby things: `bundle install` (if this doesn't work, look into [installing Bundler](http://bundler.io))
+- Start it up: `script/server`
 
-## Features
+You should have a server up and running locally at <http://localhost:4000>.
 
-* Out of the box support for multiple authors (via `_data/authors.yml`)
-* Full author information including: picture, bio, website, twitter, facebook, etc.
-* Tag description(s) and personalised covers (via `_data/tags.yml`)
-* Related posts view at the bottom of each post
-* All Ghost default pages: Author page(s), Tag page(s), About page(s), 404, etc.
-* Pagination (infinite scrolling or standard pagination, i.e. posts across multiple pages)
-* Atom Feeds by [Jekyll-feed](https://github.com/jekyll/jekyll-feed)
-* Toggleable subscribe button (requires an external service)
-* Code Syntax Highlight with [highlight.js](https://highlightjs.org/)
-* Support for Google Analytics tracking
-* Support for Disqus comments (not Ghost standard)
+## Customization
 
+Next you'll want to change a few things. Most of them can be changed directly in
+[_config.yml](https://github.com/holman/left/blob/gh-pages/_config.yml). That's
+where we'll pull your name, Twitter username, and things like that.
 
-## Getting Started
+There's a few other places that you'll want to change, too:
 
-### Deployment
+- [CNAME](https://github.com/holman/left/blob/gh-pages/CNAME): If you're using
+  this on GitHub Pages with a custom domain name, you'll want to change this
+  to be the domain you're going to use. All that should be in here is a
+  domain name on the first line and nothing else (like: `example.com`).
+- [favicon.ico](https://github.com/holman/left/blob/gh-pages/favicon.ico): This
+  is a smaller version of my gravatar for use as the icon in your browser's
+  address bar. You should change it to whatever you'd like.
+- [apple-touch-icon.png](https://github.com/holman/left/blob/gh-pages/apple-touch-icon.png):
+  Again, this is my gravatar, and it shows up in iOS and various other apps
+  that use this file as an "icon" for your site.
 
-**Important:**  For security reasons, Github does not allow plugins (under `_plugins/`) when
-deploying with Github Pages. This means:
+## Deployment
 
-**1)** that we need to generate your site locally (more details below) and push the resulting
-HTML (the contents of `_site/` or `../jasper2-pages/`) to a Github repository, that GitHub Pages
-then host;
+Left is designed to be deployed to [GitHub Pages](http://pages.github.com). It
+uses [repository metadata](https://help.github.com/articles/repository-metadata-on-github-pages)
+to generate some of your content, like your GitHub URL and avatar information (so you
+might not actually see it locally until you push it up to Pages).
 
-**2)** built the site with [travis-ci](https://travis-ci.org/) (with goodies from
-[jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the
-generated HTML files to a *gh-pages* branch.
-This later approach is the one I am currently using to generate the live demo.
+All you should have to do is rename your repository on GitHub to be
+`username.github.com`. Since everything is on the `gh-pages` branch, you
+should be able to see your new site at <http://username.github.io>.
 
-**3)** deploy the static website with Jekyll-compatible hosters, such as https://www.netlify.com/, that allow for deployment from the Github repo and publish the website using CDNs. Netlify has a free starter offer.
+## Licensing
 
-For option **1)** simply clone this repository (*master branch*), and then run
-`bundle exec jekyll serve` inside the directory. Upload the resulting `_site/` (or `../jasper2-pages/`)
-contents to your repository (*master branch* if uploading as your personal page
-(e.g. username.github.io) or *gh-pages branch* if uploading as a project page
-(as for the [demo](https://github.com/jekyller/jasper2/tree/gh-pages)).
+This is [MIT](https://github.com/holman/left/blob/gh-pages/LICENSE) with no
+added caveats, so feel free to use this on your site without linking back to
+me or using a disclaimer or anything silly like that.
 
-For option **2)** you will need to set up travis-ci for your personal fork. Briefly all you
-need then is to change your details in *[\_config.yml](_config.yml)* so that you can push
-to your github repo. You will also need to generate a secure key to add to your
-*[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file).
-Also make sure you read the documentation from
-[jekyll-travis](https://github.com/mfenner/jekyll-travis). This approach has clear
-advantages in that you simply push your file changes to GitHub and all the HTML files
-are generated for you and pushed to *gh-pages*. Also you get to know if everything is
-still fine with your site builds. Don't hesitate to contact me if you still have any
-issues (see below about issue tracking).
-
-### Author Pages
-
-In order to properly generate author pages you need to rename the field *author* in the
-front matter of every post to match that of your each author's *username* as defined
-in the *[\_data/authors.yml](_data/authors.yml)* file.
-With the latest update, multiple author blogs are now supported out of the box.
-
-### Compiling Styles
-
-Following on the way Casper styles are compiled as [described here](https://github.com/tryghost/casper#development):
-
-Jasper2 styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node and Gulp installed globally. After that, from the theme's root directory:
-
-```bash
-$ npm install
-$ gulp
-```
-
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
-
-## Issues and Contributing
-
-This install builds well with Ruby v2.4.2 and Jekyll v3.6.2. If you run into any problems
-please log them on the [issue tracker](https://github.com/jekyller/jasper2/issues).
-
-Feel free pull-request your patches and fixes.
-
-## Thanks
-
-
-Many thanks to the Ghost team for all the design work. Also many thanks to all contributors,
-that help keeping the project alive and updated :smile:
-
-
-## Copyright & License
-
-Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
-
-Copyright (C) 2015-2018 - Released under the MIT License.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+If you'd like give me credit somewhere on your blog or tweet a shout out to
+[@holman](https://twitter.com/holman), well hey, I'll take it.
