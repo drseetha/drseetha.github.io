@@ -1,7 +1,5 @@
-# Skinny Bones Gemfile
 source "https://rubygems.org"
 
-gem "jekyll"
-gem "jekyll-sitemap"
-gem "jekyll-gist"
-gem "jekyll-feed"
+gem "jekyll", "~> 3.6.2"
+gem "github-pages", "~> 168"
+gem "rake", "~> 12.3.0"
